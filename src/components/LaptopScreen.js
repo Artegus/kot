@@ -1,11 +1,5 @@
-const KOT = ["K", "O", "T"];
-const MAX_LETTERS = 44;
 
 class LaptopScreen extends HTMLElement {
-
-    indexLetter;
-    nLetters;
-    isPlaying;
 
     constructor() {
         super();
@@ -72,69 +66,8 @@ class LaptopScreen extends HTMLElement {
         `;
     }
 
-    initialize() {
-        this.indexLetter = 0;
-        this.nLetters = 0;
-    }
-
-    toogleIsPlaying() {
-        this.isPlaying = !this.isPlaying;
-    }
-
-    playSound() {
-        const audio = new Audio('./../assets/audios/kot.mp3');
-        audio.addEventListener('play', () => this.toogleIsPlaying())
-        audio.addEventListener('ended', () => this.toogleIsPlaying())
-        audio.play();
-    }
-
-
-    addLetterToScreen(letter) {
-        const screen = this.shadowRoot.querySelector('.screen');
-        screen.textContent += letter;
-    }
-
-    writeKotLetter() {
-        if (this.indexLetter === 3) {
-            this.indexLetter = 0;
-        }
-        this.addLetterToScreen(KOT[this.indexLetter]);
-        this.indexLetter++;
-        this.nLetters++;
-    }
-
-    /**
-     * 
-     * @param {KeyboardEvent} e 
-     */
-    handleWriteEvent(e) {
-        if (e.key.length > 1) return;
-        if (this.nLetters !== MAX_LETTERS) {
-            this.writeKotLetter()
-        } else {
-            const event = new CustomEvent('kot', {
-                bubbles: true,
-                composed: true,
-            });
-            this.dispatchEvent(event);
-        }
-        if (!this.isPlaying) {
-           this.playSound();
-        }
-    }
-
-    initializeEvents() {
-        window.addEventListener("keyup", this.handleWriteEvent.bind(this));
-    }
-
     connectedCallback(){
-        this.initialize();
         this.render();
-        this.initializeEvents();
-    }
-
-    disconnectedCallback() {
-        window.removeEventListener('keyup', this.handleWriteEvent.bind(this));
     }
 
     render() {
@@ -142,11 +75,8 @@ class LaptopScreen extends HTMLElement {
             <style>${LaptopScreen.styles}</style>
             <div class="front" >
                 <div class='screen-border' >
-                    <div class='screen' >
-
-                    </div>
+                    <div class='screen' ></div>
                 </div>
-
             </div>
             <div class="top" ></div>
             <div class="left" ></div>

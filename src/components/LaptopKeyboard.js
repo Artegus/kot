@@ -1,4 +1,13 @@
+const KOT = ["K", "O", "T"];
+const MAX_LETTERS = 44;
+
 class LaptopKeyboard extends HTMLElement {
+
+    /**@type {number} */
+    nLetters;
+    
+    /**@type {boolean} */
+    isPlaying;
 
     constructor() {
         super();
@@ -59,8 +68,92 @@ class LaptopKeyboard extends HTMLElement {
         `;
     }
 
+    initialize() {
+        this.nLetters = 0;
+    }
+
+    toogleIsPlaying() {
+        this.isPlaying = !this.isPlaying;
+    }
+
+    /**
+     * 
+     * @returns {HTMLAudioElement} Kot audio
+     */
+    getKotAudio() {
+        const audio = new Audio('./../assets/audios/kot.mp3');
+        audio.addEventListener('play', () => this.toogleIsPlaying());
+        audio.addEventListener('ended', () => this.toogleIsPlaying());
+        
+        return audio;
+    }
+
+    playSound() {
+        if (!this.isPlaying) {
+            const audio = this.getKotAudio();
+            audio.play();
+        }
+    }
+
+    getLetter() {
+        if (this.nLetters === 0) {
+            return KOT[0];
+        }
+        console.log(this.nLetters);
+        const pos = this.nLetters % KOT.length;
+        console.log(pos);
+        if (pos === 0) {
+            return KOT[0];
+        } else {
+            return KOT[pos];
+        }
+    }
+
+    /**
+     * 
+     * @param {string} key 
+     * @returns {boolean}
+     */
+    isValidKey(key) {
+        return key.length > 1
+    }
+
+    /**
+     * 
+     * @param {KeyboardEvent} e 
+     */
+    handleKeyUpEvent(e) {
+        if (this.isValidKey(e.key)) return;
+        this.playSound();
+        this.emitKotLetterEvent();
+        this.nLetters++;
+    }
+
+    emitKotLetterEvent() {
+        const letter = this.getLetter();
+        let kotEvent;
+        
+        if (this.nLetters <= MAX_LETTERS) {
+            const isFinished = this.nLetters === MAX_LETTERS;
+            kotEvent = new CustomEvent('kotSendToScreen', { bubbles: true, composed: true, detail: { stopWrite: isFinished, letter } })
+        } else {
+            kotEvent = new CustomEvent('kotSendToDocument', { bubbles: true, composed: true, detail: { letter } });
+        }
+        this.dispatchEvent(kotEvent);
+    }
+
+    initializeEvents() {
+        window.addEventListener("keyup", this.handleKeyUpEvent.bind(this));
+    }
+
     connectedCallback(){
+        this.initialize();
         this.render();
+        this.initializeEvents();
+    }
+
+    disconnectedCallback() {
+        window.removeEventListener('keyup', this.handleKeyUpEvent.bind(this));
     }
 
     render() {

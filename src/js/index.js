@@ -1,9 +1,6 @@
 import '../components/CardLaptopKot';
 import '../components/KotLetter'
 
-const KOT = ["K", "O", "T"];
-let indexLetter = 0;
-
 const getRandomPosition = () => {
     const container = document.querySelector('#container')
     let x = container.clientHeight;
@@ -14,10 +11,6 @@ const getRandomPosition = () => {
         x: randomX,
         y: randomY
     }
-}
-
-const getLetter = (pos) => {
-    return KOT[pos];
 }
 
 const createKotElement = (position, letter) => {
@@ -34,18 +27,12 @@ const addKotLetter = (kotLetter) => {
     document.querySelector('#container').appendChild(kotLetter);
 }
 
-const writeKotLetter = () => {
-    if (indexLetter === 3) {
-        indexLetter = 0;
-    }
-
+const handleKotSendToScreenEvent = (e) => {
+    const { letter } = e.detail;
     const position = getRandomPosition();
-    const letter = getLetter(indexLetter);
     const kotElement = createKotElement(position, letter);
 
     addKotLetter(kotElement);
-
-    indexLetter++;
 }
 
-window.addEventListener('kot', writeKotLetter)
+window.addEventListener('kotSendToDocument', handleKotSendToScreenEvent)
