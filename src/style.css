@@ -1,9 +1,23 @@
+:root {
+    --bg-color: black;
+}
+
 *, html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    background-color: black;
+#app {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-color);
+}
+
+#container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
