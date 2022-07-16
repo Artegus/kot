@@ -30,6 +30,7 @@ class LaptopScreen extends HTMLElement {
             background-color: var(--white-color);
             padding-left: 5px;
             word-wrap: break-word;
+            user-select: none;
             height: 100%;
             letter-spacing: 2px;
             font-size: 15px;
