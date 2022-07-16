@@ -16,7 +16,7 @@ class LaptopKeyboard extends HTMLElement {
             position: absolute;
             top: 25px;
             left: 83px;
-            height: 140px;
+            height: 141px;
             width: 122px;
             transform: 
             rotateX(50deg) rotateY(-30deg) rotateZ(-50deg) skew(10deg, 0deg);
@@ -25,21 +25,22 @@ class LaptopKeyboard extends HTMLElement {
         .front::before {
             content: " ";
             position: absolute;
-            width: 6px;
+            width: 5px;
             height: 10px;
-            top: 102px;
+            top: 103px;
             left: 0px;
             background: var(--brown-color);
             transform: skew(0deg, -13deg);
+            z-index: 3;
         }
 
         .front {
             background-color: var(--brown-color);
             position: absolute;
-            top: 88px;
-            left: 107px;
-            height: 106px;
-            width: 6px;
+            top: 87px;
+            left: 108px;
+            height: 108px;
+            width: 5px;
             transform:
                 rotateX(55deg) rotateY(-1deg) rotateZ(90deg) skew(0deg, 0deg);
         }
@@ -52,7 +53,7 @@ class LaptopKeyboard extends HTMLElement {
             height: 2px;
             width: 117px;
             transform: 
-            rotateX(0deg) rotateY(-25deg) rotateZ(-50deg) skew(130deg, 0deg);
+            rotateX(0deg) rotateY(-26deg) rotateZ(-50deg) skew(130deg, 0deg);
         }
 
         `;
