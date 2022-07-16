@@ -1,18 +1,23 @@
 @import url('./fonts.css');
 
 :root {
-    --bg-color: black;
+    --bg-color: var(--white-color);
     --red-color: #F26B76;
     --white-color: #F2E4E9;
     --blue-color: #8786A6;
     --brown-color: #BFAC95;
     --salmon-color: #F29580;
+    --kot-letter: black;
 }
 
 *, html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body{
+    background-color: var(--bg-color);
 }
 
 #app {
