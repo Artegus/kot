@@ -12,7 +12,7 @@ class LaptopKeyboard extends HTMLElement {
         }
         
         .top {
-            background-color: navy;
+            background-color: var(--red-color);
             position: absolute;
             top: 25px;
             left: 83px;
@@ -29,12 +29,12 @@ class LaptopKeyboard extends HTMLElement {
             height: 10px;
             top: 102px;
             left: 0px;
-            background: purple;
+            background: var(--brown-color);
             transform: skew(0deg, -13deg);
         }
 
         .front {
-            background-color: purple;
+            background-color: var(--brown-color);
             position: absolute;
             top: 88px;
             left: 107px;
@@ -45,7 +45,7 @@ class LaptopKeyboard extends HTMLElement {
         }
 
         .right {
-            background-color: yellow;
+            background-color: var(--blue-color);
             position: absolute;
             top: 95px;
             left: 139px;

@@ -1,5 +1,12 @@
+@import url('./fonts.css');
+
 :root {
     --bg-color: black;
+    --red-color: #F26B76;
+    --white-color: #F2E4E9;
+    --blue-color: #8786A6;
+    --brown-color: #BFAC95;
+    --salmon-color: #F29580;
 }
 
 *, html, body {

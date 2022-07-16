@@ -1,5 +1,5 @@
 const KOT = ["K", "O", "T"];
-const MAX_LETTERS = 43;
+const MAX_LETTERS = 44;
 
 class LaptopScreen extends HTMLElement {
 
@@ -18,16 +18,20 @@ class LaptopScreen extends HTMLElement {
         }
         
         .screen-border {
+            background-color: var(--blue-color);
             height: inherit;
+            max-height: 90px;
             padding: 5px;
         }
 
         .screen {
-            border: 1px solid black;
+            background-color: var(--white-color);
             padding-left: 5px;
             word-wrap: break-word;
+            height: 100%;
             letter-spacing: 2px;
-            height: 90%;
+            font-size: 15px;
+            font-family: 'Kot', monospace; 
         }
 
         .front {
@@ -46,7 +50,7 @@ class LaptopScreen extends HTMLElement {
             left: -4px;
             width: 122px;
             height: 6px;
-            background-color: red;
+            background-color: var(--red-color);
             transform:
             rotateX(50deg) rotateY(-30deg) rotateZ(-50deg) skew(10deg, 1deg);
         }
@@ -57,7 +61,7 @@ class LaptopScreen extends HTMLElement {
             left: 35px;
             width: 6px;
             height: 100px;
-            background-color: pink;
+            background-color: var(--salmon-color);
             transform:
             rotateX(35deg) rotateY(30deg) rotateZ(-40deg) skew(-20deg, 20deg);
         }
