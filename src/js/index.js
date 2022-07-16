@@ -27,7 +27,7 @@ const addKotLetter = (kotLetter) => {
     document.querySelector('#container').appendChild(kotLetter);
 }
 
-const handleKotSendToScreenEvent = (e) => {
+const handleKotSendToDocument = (e) => {
     const { letter } = e.detail;
     const position = getRandomPosition();
     const kotElement = createKotElement(position, letter);
@@ -35,4 +35,4 @@ const handleKotSendToScreenEvent = (e) => {
     addKotLetter(kotElement);
 }
 
-window.addEventListener('kotSendToDocument', handleKotSendToScreenEvent)
+window.addEventListener('kotSendToDocument', handleKotSendToDocument)
