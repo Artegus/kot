@@ -99,9 +99,7 @@ class LaptopKeyboard extends HTMLElement {
         if (this.nLetters === 0) {
             return KOT[0];
         }
-        console.log(this.nLetters);
         const pos = this.nLetters % KOT.length;
-        console.log(pos);
         if (pos === 0) {
             return KOT[0];
         } else {
