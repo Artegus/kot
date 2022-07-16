@@ -12,7 +12,7 @@ class Laptop extends HTMLElement {
         return `
             :host {
                 display: block;
-                background-color: white; 
+                background-color: white;
             }
         `
     }

@@ -11,13 +11,16 @@ class Kot extends HTMLElement {
         return `
             :host{
                 display: block;
-                position: relative;
-                border: 1px solid grey;
+                position: absolute;
                 z-index: 2;
-                width: 110px;
-                top: -150px;
+                top: 50px;
                 left: 75px;
-                transform: rotateX(20deg) rotateY(10deg) rotateZ(0deg);
+            }
+            
+            .kot {
+                width: 150px;
+                transform: 
+                rotateX(0deg) rotateY(180deg) rotate(40deg);
             }
         `
     }
@@ -30,7 +33,7 @@ class Kot extends HTMLElement {
     render() {
         this.shadowRoot.innerHTML = /* html */`
             <style>${Kot.styles}</style>
-            <img src=${kot} alt="kot" />
+            <img src=${kot} alt="kot" class='kot' />
         `;
     }
 

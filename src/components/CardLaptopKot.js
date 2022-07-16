@@ -12,6 +12,12 @@ class CardLaptopKot extends HTMLElement {
         return `
             :host {
                 display: block;
+                position: relative;
+                background-color: grey;
+                width: 100px;
+                height: auto;
+            }
+            .card-laptop-kat{
             }
         `
     }
