@@ -5,10 +5,12 @@ class LaptopScreen extends HTMLElement {
 
     indexLetter;
     nLetters;
+    isPlaying;
 
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
+        this.isPlaying = false;
     }
 
     static get styles() {
@@ -74,6 +76,18 @@ class LaptopScreen extends HTMLElement {
         this.nLetters = 0;
     }
 
+    toogleIsPlaying() {
+        this.isPlaying = !this.isPlaying;
+    }
+
+    playSound() {
+        const audio = new Audio('./../assets/audios/kot.mp3');
+        audio.addEventListener('play', () => this.toogleIsPlaying())
+        audio.addEventListener('ended', () => this.toogleIsPlaying())
+        audio.play();
+    }
+
+
     addLetterToScreen(letter) {
         const screen = this.shadowRoot.querySelector('.screen');
         screen.textContent += letter;
@@ -102,6 +116,9 @@ class LaptopScreen extends HTMLElement {
                 composed: true,
             });
             this.dispatchEvent(event);
+        }
+        if (!this.isPlaying) {
+           this.playSound();
         }
     }
 
