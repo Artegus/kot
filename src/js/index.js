@@ -1,10 +1,9 @@
 import '../components/CardLaptopKot';
 import '../components/KotLetter'
 
-const getRandomPosition = () => {
-    const container = document.querySelector('#container')
-    let x = container.clientHeight;
-	let y = container.clientWidth;
+const getRandomPosition = (element, padding) => {
+    let x = element.clientHeight - padding;
+	let y = element.clientWidth - padding;
 	let randomX = Math.floor(Math.random() * x);
 	let randomY = Math.floor(Math.random() * y);
 	return {
@@ -29,7 +28,7 @@ const addKotLetter = (kotLetter) => {
 
 const handleKotSendToDocument = (e) => {
     const { letter } = e.detail;
-    const position = getRandomPosition();
+    const position = getRandomPosition(document.querySelector('#container'), 100);
     const kotElement = createKotElement(position, letter);
 
     addKotLetter(kotElement);
