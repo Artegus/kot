@@ -66,7 +66,16 @@ class LaptopScreen extends HTMLElement {
         `;
     }
 
-    connectedCallback(){
+    /**
+     * Add letter to screen.
+     * @param {string} letter 
+     */
+    addLetterToScreen(letter) {
+        const screen = this.shadowRoot.querySelector('.screen');
+        screen.textContent += letter;
+    }
+
+    connectedCallback() {
         this.render();
     }
 

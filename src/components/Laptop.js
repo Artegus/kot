@@ -22,8 +22,7 @@ class Laptop extends HTMLElement {
      * @param {string} letter 
      */
     addLetterToScreen(letter) {
-        const screen = this.getLaptopScreen().shadowRoot.querySelector('.screen');
-        screen.textContent += letter;
+        this.getLaptopScreen().addLetterToScreen(letter);
     }
 
     /**
@@ -41,7 +40,7 @@ class Laptop extends HTMLElement {
 
     /**
      * 
-     * @returns {Element}
+     * @returns {LaptopScreen}
      */
     getLaptopScreen() {
         return this.shadowRoot.querySelector('laptop-screen');
