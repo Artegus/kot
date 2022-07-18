@@ -14,7 +14,7 @@ export class KotRoom {
         this.experience = new Experience();
         this.scene = this.experience.scene;
         this.resources = this.experience.resources; 
-        this.room = this.resources.items.kotRoom;
+        this.room = this.resources.gltfItems.kotRoom;
         this.actualRoom = this.room.scene;
 
         this.setModel();
@@ -22,6 +22,7 @@ export class KotRoom {
 
     setModel() {
         this.scene.add(this.actualRoom);
+        this.actualRoom.scale.set(0.11, 0.11, 0.11);
     }
 
     resize() {

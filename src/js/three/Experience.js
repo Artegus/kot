@@ -5,7 +5,7 @@ import { Renderer } from './Renderer'
 import { Time } from './utils/Time';
 import { Resources } from './utils/Resources';
 
-import assets from './assets/assets';
+import { assets } from './assets/assets';
 
 import { World } from './world/World';
 

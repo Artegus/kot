@@ -1,17 +1,22 @@
 import { Experience } from "../Experience";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
-import { VideoTexture } from "three";
-import { NearestFilter } from "three";
-import { sRGBEncoding } from "three";
+import { VideoTexture, NearestFilter, sRGBEncoding } from "three";
 
 export class Resources extends EventTarget {
 
     experience;
     renderer;
+    /**
+     * @typedef {{ name: string; type: string; path: string; }} Asset
+     * @type { Asset[] }
+     */
     assets;
 
-    items;
+    /**@type {Object.<string, KotSpace.GLTF>} */
+    gltfItems;
+    /**@type {Object.<string, VideoTexture>} */
+    videoItems;
     queue;
     loaded;
 
@@ -20,7 +25,7 @@ export class Resources extends EventTarget {
 
     /**
      * 
-     * @param {{ name: string; type: string; path: string; }[]} assets 
+     * @param {Asset[]} assets 
      */
     constructor(assets) {
         super();
@@ -29,7 +34,8 @@ export class Resources extends EventTarget {
         
         this.assets = assets;
 
-        this.items = {};
+        this.gltfItems = {};
+        this.videoItems = {};
         this.queue = this.assets.length;
         this.loaded = 0;
         this.setLoaders();
@@ -44,14 +50,15 @@ export class Resources extends EventTarget {
         this.loaders.gltfLoader.setDRACOLoader(this.loaders.dracoLoader);
     }
 
-    startLoading() {
+    async startLoading() {
         for( const asset of this.assets) {
             if (asset.type === 'glbModel') {
-                this.loaders.gltfLoader.load(asset.path, (file) => {
-                    this.singleAssetLoaded(asset, file);
-                })
+                let gltf = await this.loaders.gltfLoader.loadAsync(asset.path);
+                this.singleAssetLoaded(asset, gltf);
             } else if (asset.type === 'videoTexture') {
+                /**@type {Object.<string, HTMLVideoElement>} */
                 this.video = {};
+                /** @type {Object.<string, VideoTexture>} */
                 this.videoTexture = {};
 
                 this.video[asset.name] = document.createElement('video')
@@ -68,21 +75,35 @@ export class Resources extends EventTarget {
 
                 this.videoTexture[asset.name].flipY = true;
                 this.videoTexture[asset.name].minFilter = NearestFilter;
-                this.videoTexture[asset.name].mageFilter = NearestFilter;
+                this.videoTexture[asset.name].magFilter = NearestFilter;
                 this.videoTexture[asset.name].generateMipmaps = false;
-                this.videoTexture[asset.name].enconding = sRGBEncoding;
-                this.singleAssetLoaded(asset, this.videoTexture[asset.name]);
+                this.videoTexture[asset.name].encoding = sRGBEncoding;
+                this.singleVideoLoaded(asset, this.videoTexture[asset.name]);
             }
         }
-    }
-
-    singleAssetLoaded(asset, file) {
-        this.items[asset.name] = file;
-        this.loaded++;
-
         if (this.loaded === this.queue) {
             this.dispatchEvent(new Event('ready'));
         }
+    }
+    
+    /**
+     * 
+     * @param { Asset } asset 
+     * @param { GLTF } file 
+     */
+    singleAssetLoaded(asset, file) {
+        this.gltfItems[asset.name] = file;
+        this.loaded++;
+    }
+
+    /**
+     * 
+     * @param { Asset } asset
+     * @param { VideoTexture } video
+     */
+    singleVideoLoaded(asset, video) {
+        this.videoItems[asset.name] = video;
+        this.loaded++;
     }
 
 }

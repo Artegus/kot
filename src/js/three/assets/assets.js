@@ -1,7 +1,9 @@
-export default [
+const assets = [
     {
         name: 'kotRoom',
         type: 'glbModel',
-        path: '/models/finalKotScene.glb'
+        path: '/models/kot_scene_v11.glb'
     }
 ]
+
+export { assets };
