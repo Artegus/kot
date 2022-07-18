@@ -2,7 +2,7 @@ const assets = [
     {
         name: 'kotRoom',
         type: 'glbModel',
-        path: '/models/kot_scene_v11.glb'
+        path: '/models/kot_scene.glb'
     }
 ]
 
