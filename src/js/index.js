@@ -1,3 +1,5 @@
+/// <reference path="types.d.ts"/>
+
 import '../components/CardLaptopKot';
 import '../components/KotLetter'
 
