@@ -1,6 +1,9 @@
 import { Experience } from './Experience'
-import { PerspectiveCamera, OrthographicCamera } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { 
+    PerspectiveCamera, OrthographicCamera, 
+    GridHelper, AxesHelper
+} from 'three'
 
 export class Camera {
 
@@ -51,7 +54,15 @@ export class Camera {
             -100,
             100
         );
-        this.scene.add(this.perspectiveCamera);
+        this.scene.add(this.orthographicCamera);
+
+        const size = 10;
+        const divisions = 10;
+
+        const gridHelper = new GridHelper(size, divisions);
+        this.scene.add(gridHelper);
+        const axesHelper = new AxesHelper(10);
+        this.scene.add(axesHelper);
     }
 
     setOrbitControls() {
