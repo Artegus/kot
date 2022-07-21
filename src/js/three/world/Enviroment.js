@@ -1,4 +1,4 @@
-import { DirectionalLight } from 'three';
+import { AmbientLight, DirectionalLight } from 'three';
 import { Experience } from '../Experience'
 
 export class Enviroment {
@@ -26,8 +26,12 @@ export class Enviroment {
         this.sunlight.shadow.camera.far = 20;
         this.sunlight.shadow.mapSize.set(1024, 1024);
         this.sunlight.shadow.normalBias = 0.05;
-        this.sunlight.position.set(50, 100, 90);
-        this.scene.add(this.sunlight)
+        this.sunlight.position.set(1, 14, 9);
+        this.scene.add(this.sunlight);
+
+        this.ambientLight = new AmbientLight('#ffffff', 1);
+        this.scene.add(this.ambientLight);
+
     }
 
     resize() {
