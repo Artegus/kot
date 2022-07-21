@@ -65,7 +65,7 @@ export class Resources extends EventTarget {
                 this.video[asset.name].src = asset.path;
                 this.video[asset.name].playsInline = true;
                 this.video[asset.name].loop = true;
-                this.video[asset.name].mute = true;
+                this.video[asset.name].muted = true;
                 this.video[asset.name].autoplay = true;
                 this.video[asset.name].play();
 
