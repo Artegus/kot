@@ -81,7 +81,7 @@ class LaptopKeyboard extends HTMLElement {
      * @returns {HTMLAudioElement} Kot audio
      */
     getKotAudio() {
-        const audio = new Audio('./../assets/audios/kot.mp3');
+        const audio = new Audio('./assets/audios/kot.mp3');
         audio.addEventListener('play', () => this.toogleIsPlaying());
         audio.addEventListener('ended', () => this.toogleIsPlaying());
         

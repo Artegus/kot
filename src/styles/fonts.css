@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'Kot';
     src: 
-        url('../fonts/EduVICWANTBeginner-Bold.ttf') format('truetype'),
-        url('../fonts/EduVICWANTBeginner-Medium.ttf') format('truetype'),
-        url('../fonts/EduVICWANTBeginner-Regular.ttf') format('truetype'),
-        url('../fonts/EduVICWANTBeginner-SemiBold.ttf') format('truetype'),
-        url('../fonts/EduVICWANTBeginner-VariableFont_wght.ttf') format('truetype');
+        url('/assets/fonts/EduVICWANTBeginner-Bold.ttf') format('truetype'),
+        url('/assets/fonts/EduVICWANTBeginner-Medium.ttf') format('truetype'),
+        url('/assets/fonts/EduVICWANTBeginner-Regular.ttf') format('truetype'),
+        url('/assets/fonts/EduVICWANTBeginner-SemiBold.ttf') format('truetype'),
+        url('/assets/fonts/EduVICWANTBeginner-VariableFont_wght.ttf') format('truetype');
     font-display: swap;
 }
