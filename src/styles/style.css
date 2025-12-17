@@ -41,10 +41,19 @@ body{
 
 #start-message {
     position: absolute;
-    bottom: 22%;
-    left: 40%;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
     font-family: 'Kot', monospace;
     font-size: 20px;
     color: var(--kot-letter);
+    color: #8d7661;
+
+}
+
+@media (min-width: 600px) {
+    #start-message {
+        bottom: 0px;
+    }
 }

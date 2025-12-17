@@ -36,8 +36,8 @@ const handleKotSendToDocument = (e) => {
 document.querySelector("#app").innerHTML = `
 <div id="container">
     <card-laptop-kot></card-laptop-kot>
-    <p id='start-message' >Press any key or touch the screen to start</p>
 </div>
+    <p id='start-message' >Press any key or touch the screen to start</p>
 `;
 
 window.addEventListener("kotSendToDocument", handleKotSendToDocument);
