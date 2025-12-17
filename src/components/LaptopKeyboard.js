@@ -122,11 +122,20 @@ class LaptopKeyboard extends HTMLElement {
      */
     handleKeyUpEvent(e) {
         if (this.isValidKey(e.key)) return;
+        this.removeStartMessage();
         this.createKotLetter();
     }
 
     handleTouchStartEvent(e) {
+        this.removeStartMessage();
         this.createKotLetter();
+    }
+
+    removeStartMessage() {
+        const startMessage = document.querySelector('#start-message');
+        if (startMessage) {
+            startMessage.remove();
+        }
     }
 
     createKotLetter() {
