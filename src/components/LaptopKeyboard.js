@@ -122,6 +122,14 @@ class LaptopKeyboard extends HTMLElement {
      */
     handleKeyUpEvent(e) {
         if (this.isValidKey(e.key)) return;
+        this.createKotLetter();
+    }
+
+    handleTouchStartEvent(e) {
+        this.createKotLetter();
+    }
+
+    createKotLetter() {
         this.playSound();
         this.emitKotLetterEvent();
         this.nLetters++;
@@ -142,6 +150,7 @@ class LaptopKeyboard extends HTMLElement {
 
     initializeEvents() {
         window.addEventListener("keyup", this.handleKeyUpEvent.bind(this));
+        window.addEventListener('touchstart', this.handleTouchStartEvent.bind(this));
     }
 
     connectedCallback(){
@@ -152,6 +161,7 @@ class LaptopKeyboard extends HTMLElement {
 
     disconnectedCallback() {
         window.removeEventListener('keyup', this.handleKeyUpEvent.bind(this));
+        window.removeEventListener('touchstart', this.handleTouchStartEvent.bind(this));
     }
 
     render() {
